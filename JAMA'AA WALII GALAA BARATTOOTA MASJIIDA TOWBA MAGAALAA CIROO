@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="om">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jem'aa Barattoota Waliigalaa Masjida Tawbaa</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+:root{
+  --green:#075b3a;
+  --green2:#0b8050;
+  --green3:#eaf7f0;
+  --gold:#f0c94b;
+  --dark:#12352a;
+  --text:#173b2b;
+  --muted:#6a7c73;
+  --white:#fff;
+  --danger:#b3261e;
+  --warning:#d99a00;
+  --success:#188344;
+  --bg:#f4f8f5;
+  --border:#dfe9e3;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+a{
+  text-decoration:none;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+/* ================= HEADER ================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:rgba(7,91,58,.97);
+  color:white;
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
+}
+
+nav{
+  max-width:1250px;
+  margin:auto;
+  min-height:70px;
+  padding:10px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:19px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.logo-icon{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.15);
+  border-radius:12px;
+  font-size:22px;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:3px;
+}
+
+nav a{
+  color:white;
+  padding:8px 9px;
+  border-radius:8px;
+  font-size:13px;
+  transition:.2s;
+}
+
+nav a:hover{
+  background:rgba(255,255,255,.14);
+}
+
+.lang{
+  background:white;
+  color:var(--green);
+  border:0;
+  padding:8px 10px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  min-height:78vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:70px 20px;
+  color:white;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.10),transparent 30%),
+    radial-gradient(circle at 80% 80%,rgba(240,201,75,.10),transparent 30%),
+    linear-gradient(135deg,#064a31,#0c8a57);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;
+  right:-100px;
+  top:-100px;
+}
+
+.hero-content{
+  max-width:900px;
+  position:relative;
+}
+
+.badge{
+  display:inline-block;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.18);
+  padding:7px 14px;
+  border-radius:30px;
+  margin-bottom:20px;
+  font-size:14px;
+}
+
+.hero h1{
+  font-size:clamp(34px,6vw,64px);
+  line-height:1.1;
+  margin-bottom:20px;
+}
+
+.hero p{
+  max-width:760px;
+  margin:auto;
+  font-size:18px;
+  opacity:.95;
+}
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 20px;
+  border-radius:9px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn-primary{
+  background:var(--gold);
+  color:#183d2d;
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+}
+
+.btn-light{
+  color:white;
+  border:1px solid rgba(255,255,255,.4);
+  background:rgba(255,255,255,.08);
+}
+
+.btn-light:hover{
+  background:rgba(255,255,255,.16);
+}
+
+/* ================= GENERAL ================= */
+
+main{
+  max-width:1250px;
+  margin:auto;
+}
+
+section{
+  padding:75px 20px;
+}
+
+.title{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.title h2{
+  color:var(--green);
+  font-size:34px;
+  margin-bottom:8px;
+}
+
+.title p{
+  color:var(--muted);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+
+.card h3{
+  color:var(--green);
+  margin-bottom:9px;
+}
+
+.card-icon{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  background:var(--green3);
+  font-size:23px;
+  margin-bottom:15px;
+}
+
+.notice{
+  background:#fff9df;
+  border-left:5px solid var(--gold);
+  padding:16px 18px;
+  margin-bottom:12px;
+  border-radius:10px;
+}
+
+.form{
+  max-width:700px;
+  margin:auto;
+  background:white;
+  padding:28px;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+}
+
+label{
+  display:block;
+  margin:14px 0 6px;
+  font-weight:700;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  padding:12px 13px;
+  border:1px solid #cfdcd4;
+  border-radius:9px;
+  background:white;
+  color:var(--text);
+  outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:var(--green2);
+  box-shadow:0 0 0 3px rgba(11,128,80,.1);
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.submit{
+  background:var(--green);
+  color:white;
+  padding:12px 18px;
+  border-radius:9px;
+  margin-top:15px;
+  font-weight:700;
+}
+
+.submit:hover{
+  background:var(--green2);
+}
+
+.success,
+.error{
+  padding:13px;
+  border-radius:9px;
+  margin-top:14px;
+  display:none;
+}
+
+.success{
+  background:#e5f7eb;
+  color:#176b38;
+}
+
+.error{
+  background:#fde8e7;
+  color:#9b1c1c;
+}
+
+/* ================= ADMIN ================= */
+
+.admin-panel{
+  display:none;
+}
+
+.admin-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.admin-welcome{
+  color:var(--muted);
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:16px;
+  margin:20px 0 30px;
+}
+
+.stat{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:22px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.stat-icon{
+  font-size:25px;
+}
+
+.stat-number{
+  font-size:35px;
+  font-weight:800;
+  color:var(--green);
+}
+
+.stat.pending .stat-number{
+  color:var(--warning);
+}
+
+.stat.accepted .stat-number{
+  color:var(--success);
+}
+
+.stat.declined .stat-number{
+  color:var(--danger);
+}
+
+/* ================= STUDENTS ================= */
+
+.student-row{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:17px;
+  margin-bottom:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.04);
+}
+
+.student-name{
+  font-weight:800;
+  color:var(--green);
+  font-size:17px;
+}
+
+.student-info{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:4px;
+}
+
+.status{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:800;
+  margin-top:9px;
+}
+
+.status-pending{
+  background:#fff2c2;
+  color:#876600;
+}
+
+.status-accepted{
+  background:#d9f5e2;
+  color:#176b38;
+}
+
+.status-declined{
+  background:#fde0de;
+  color:#9b1c1c;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+
+.action{
+  color:white;
+  padding:8px 11px;
+  border-radius:7px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.accept{
+  background:var(--success);
+}
+
+.decline{
+  background:var(--warning);
+}
+
+.delete{
+  background:var(--danger);
+}
+
+/* ================= ATTENDANCE ================= */
+
+.attendance-toolbar{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+}
+
+.attendance-summary{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:15px;
+}
+
+.summary-box{
+  padding:10px 15px;
+  border-radius:9px;
+  background:var(--bg);
+  font-weight:bold;
+}
+
+.table-wrap{
+  overflow-x:auto;
+  background:white;
+  border-radius:15px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.attendance-table{
+  width:100%;
+  min-width:650px;
+  border-collapse:collapse;
+}
+
+.attendance-table th,
+.attendance-table td{
+  padding:13px;
+  border-bottom:1px solid #e7ede9;
+  text-align:left;
+}
+
+.attendance-table th{
+  background:var(--green);
+  color:white;
+}
+
+.present-btn,
+.absent-btn{
+  color:white;
+  padding:8px 11px;
+  border-radius:7px;
+  font-size:12px;
+  font-weight:bold;
+  margin:2px;
+}
+
+.present-btn{
+  background:var(--success);
+}
+
+.absent-btn{
+  background:var(--danger);
+}
+
+.attendance-active{
+  outline:3px solid rgba(7,91,58,.25);
+}
+
+/* ================= MANAGEMENT ================= */
+
+.manage-card{
+  background:white;
+  border:1px solid var(--border);
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:12px;
+}
+
+.manage-actions{
+  margin-top:10px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  background:var(--dark);
+  color:white;
+  text-align:center;
+  padding:35px 20px;
+}
+
+footer p{
+  margin:5px 0;
+}
+
+.small{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.loading{
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+}
+
+.empty{
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:950px){
+
+nav{
+  flex-direction:column;
+}
+
+nav ul{
+  gap:2px;
+}
+
+}
+
+@media(max-width:600px){
+
+section{
+  padding:55px 14px;
+}
+
+.hero{
+  min-height:75vh;
+  padding:55px 15px;
+}
+
+.hero h1{
+  font-size:37px;
+}
+
+.hero p{
+  font-size:16px;
+}
+
+.title h2{
+  font-size:28px;
+}
+
+.form{
+  padding:20px;
+}
+
+.logo{
+  font-size:17px;
+}
+
+nav a{
+  font-size:12px;
+  padding:6px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+HEADER
+===================================================== -->
+
+<header>
+
+<nav>
+
+<div class="logo">
+<div class="logo-icon">🕌</div>
+Masjida Tawbaa
+</div>
+
+<ul>
+
+<li><a href="#home" data-i18n="home">Home</a></li>
+<li><a href="#about" data-i18n="about">About</a></li>
+<li><a href="#events" data-i18n="events">Events</a></li>
+<li><a href="#announcement" data-i18n="announcement">Announcement</a></li>
+<li><a href="#registration" data-i18n="registration">Registration</a></li>
+<li><a href="#comments" data-i18n="comments">Comments</a></li>
+<li><a href="#contact" data-i18n="contact">Contact</a></li>
+<li><a href="#admin">🔐 Admin</a></li>
+
+</ul>
+
+<select id="language" class="lang">
+
+<option value="om">Afaan Oromoo</option>
+<option value="am">አማርኛ</option>
+<option value="en">English</option>
+
+</select>
+
+</nav>
+
+</header>
+
+
+<!-- =====================================================
+HERO
+===================================================== -->
+
+<section id="home" class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+🕌 Masjida Tawbaa
+</div>
+
+<h1 data-i18n="siteTitle">
+Jem'aa Barattoota Waliigalaa Masjida Tawbaa
+</h1>
+
+<p data-i18n="welcome">
+Baga nagaan dhuftan. Website barattootaa fi hawaasa Masjida Tawbaa.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#registration" class="btn btn-primary">
+🎓 <span data-i18n="join">Galmee Barattootaa</span>
+</a>
+
+<a href="#about" class="btn btn-light">
+ℹ️ <span data-i18n="learn">Waa'ee Keenya</span>
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<main>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+
+  <div class="title">
+    <h2 data-i18n="aboutTitle">Waa'ee Keenya</h2>
+  </div>
+
+  <div class="grid">
+
+    <!-- KAAYYOO -->
+    <div class="card">
+      <h3>🎯 Kaayyoo</h3>
+
+      <p>
+        Barattoota walitti fiduu, barnoota fi hojii
+        hawaasummaa cimsuu.
+      </p>
+    </div>
+
+
+    <!-- HOGGANSA WALII GALAA -->
+    <div class="card">
+      <h3>👥 Hoggansa Waliigalaa</h3>
+
+      <p>
+        <b>Amiirri:</b> Yusuf Kedir
+        <br>
+
+        <b>Itti aanaa:</b> Murti Musa
+        <br>
+
+        <b>Barreessaa:</b> Arabu Hashim
+      </p>
+    </div>
+
+
+    <!-- HOGGANSA SUMAYYOOTAA -->
+    <div class="card">
+      <h3>👥 Hoggansa Sumayyootaa</h3>
+
+      <p>
+        <b>Amiirri:</b> Lubaabaa Nuuruu
+        <br>
+
+        <b>Itti aantuun:</b> Imaan Taajuddiin
+        <br>
+
+        <b>Barreessituu:</b> ______________
+      </p>
+    </div>
+
+
+    <!-- DUUDHAALEE -->
+    <div class="card">
+      <h3>🤝 Duudhaalee</h3>
+
+      <p>
+        Tokkummaa, amanamummaa, kabaja, barnoota fi
+        tajaajila hawaasaa.
+      </p>
+    </div>
+
+  </div>
+
+  </section>
+
+
+<!-- =====================================================
+EVENTS
+===================================================== -->
+
+<section id="events">
+
+<div class="title">
+
+<h2 data-i18n="eventsTitle">
+📅 Events / Sagantaalee
+</h2>
+
+<p data-i18n="eventsSub">
+Sagantaalee fi hojiiwwan keenya.
+</p>
+
+</div>
+
+<div id="eventsList" class="grid">
+
+<div class="loading">
+Loading...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+ANNOUNCEMENTS
+===================================================== -->
+
+<section id="announcement">
+
+<div class="title">
+
+<h2 data-i18n="announcementTitle">
+📢 Beeksisa
+</h2>
+
+</div>
+
+<div id="announcementList">
+
+<div class="loading">
+Loading...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+REGISTRATION
+===================================================== -->
+
+<section id="registration">
+
+<div class="title">
+
+<h2 data-i18n="registrationTitle">
+🎓 Galmee Barattootaa
+</h2>
+
+<p data-i18n="registrationSub">
+Galmee kee guuti; admin ni ilaala.
+</p>
+
+</div>
+
+<form id="registrationForm" class="form">
+
+<label data-i18n="fullName">
+Maqaa Guutuu
+</label>
+
+<input
+name="name"
+required
+autocomplete="name"
+>
+
+<label data-i18n="phone">
+Lakkoofsa Bilbilaa
+</label>
+
+<input
+name="phone"
+type="tel"
+required
+autocomplete="tel"
+>
+
+<label data-i18n="class">
+Kutaa / Level
+</label>
+
+<input
+name="level"
+required
+>
+
+<label data-i18n="note">
+Yaada dabalataa
+</label>
+
+<textarea name="note"></textarea>
+
+<button
+type="submit"
+class="submit"
+id="registerBtn"
+data-i18n="registerBtn">
+
+Galmeessi
+
+</button>
+
+<div id="regSuccess" class="success">
+
+✅ <span data-i18n="regSuccess">
+Galmeen milkaa'eera!
+</span>
+
+</div>
+
+<div id="regError" class="error"></div>
+
+</form>
+
+</section>
+
+
+<!-- =====================================================
+COMMENTS
+===================================================== -->
+
+<section id="comments">
+
+<div class="title">
+
+<h2 data-i18n="commentsTitle">
+💬 Yaada / Comments
+</h2>
+
+</div>
+
+<form id="commentForm" class="form">
+
+<label data-i18n="name">
+Maqaa
+</label>
+
+<input name="name" required>
+
+<label data-i18n="comment">
+Yaada
+</label>
+
+<textarea
+name="comment"
+required>
+</textarea>
+
+<button
+type="submit"
+class="submit"
+id="commentBtn"
+data-i18n="send">
+
+Ergi
+
+</button>
+
+<div id="commentError" class="error"></div>
+
+</form>
+
+<div
+id="commentsList"
+class="grid"
+style="margin-top:25px">
+
+<div class="loading">
+Loading...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+CONTACT
+===================================================== -->
+
+<section id="contact">
+
+<div class="title">
+
+<h2 data-i18n="contactTitle">
+📞 Nu Qunnamaa
+</h2>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-icon">📧</div>
+
+<h3>Email</h3>
+
+<p>
+jamaaabarattootawgalaamasjiida@gmail.com
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">📱</div>
+
+<h3 data-i18n="phoneLabel">
+Bilbila
+</h3>
+
+<p>
++251925702779
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">📍</div>
+
+<h3 data-i18n="location">
+Bakka
+</h3>
+
+<p>
+Masjida Tawbaa
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+ADMIN
+===================================================== -->
+
+<section id="admin">
+
+<div class="title">
+
+<h2>
+🔐 Admin Dashboard
+</h2>
+
+<p>
+Supabase secure administration
+</p>
+
+</div>
+
+
+<!-- LOGIN -->
+
+<div id="loginBox" class="form">
+
+<h3>
+Admin Login
+</h3>
+
+<label>
+Email
+</label>
+
+<input
+id="adminEmail"
+type="email"
+placeholder="admin@email.com"
+autocomplete="email"
+required
+>
+
+<label>
+Password
+</label>
+
+<input
+id="adminPassword"
+type="password"
+autocomplete="current-password"
+required
+>
+
+<button
+id="loginBtn"
+class="submit">
+
+🔐 Login
+
+</button>
+
+<div id="loginError" class="error"></div>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+
+<div id="adminPanel" class="admin-panel">
+
+<div class="admin-header">
+
+<div>
+
+<h2>
+📊 Dashboard
+</h2>
+
+<p
+id="adminWelcome"
+class="admin-welcome">
+</p>
+
+</div>
+
+<button
+id="logoutBtn"
+class="action delete">
+
+Logout
+
+</button>
+
+</div>
+
+
+<!-- STATISTICS -->
+
+<div class="stats">
+
+<div class="stat">
+
+<div class="stat-icon">
+👨‍🎓
+</div>
+
+<div>
+Total Students
+</div>
+
+<div
+id="totalStudents"
+class="stat-number">
+0
+</div>
+
+</div>
+
+
+<div class="stat pending">
+
+<div class="stat-icon">
+⏳
+</div>
+
+<div>
+Pending
+</div>
+
+<div
+id="pendingStudents"
+class="stat-number">
+0
+</div>
+
+</div>
+
+
+<div class="stat accepted">
+
+<div class="stat-icon">
+✅
+</div>
+
+<div>
+Accepted
+</div>
+
+<div
+id="acceptedStudents"
+class="stat-number">
+0
+</div>
+
+</div>
+
+
+<div class="stat declined">
+
+<div class="stat-icon">
+
+</div>
+
+<div>
+Declined
+</div>
+
+<div
+id="declinedStudents"
+class="stat-number">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STUDENTS -->
+
+<div class="card">
+
+<h3>
+👨‍🎓 Student Management
+</h3>
+
+<input
+id="studentSearch"
+placeholder="🔍 Search name, phone or level..."
+style="margin-top:15px"
+>
+
+<div
+id="adminStudents"
+style="margin-top:18px">
+
+Loading...
+
+</div>
+
+</div>
+
+
+<!-- ATTENDANCE -->
+
+<div
+class="card"
+style="margin-top:25px">
+
+<h3>
+📋 Attendance
+</h3>
+
+<label>
+📅 Guyyaa
+</label>
+
+<input
+id="attendanceDate"
+type="date"
+>
+
+<div class="attendance-summary">
+
+<div class="summary-box">
+👨‍🎓 Total:
+<span id="attendanceTotal">0</span>
+</div>
+
+<div class="summary-box">
+🟢 Present:
+<span id="attendancePresent">0</span>
+</div>
+
+<div class="summary-box">
+🔴 Absent:
+<span id="attendanceAbsent">0</span>
+</div>
+
+</div>
+
+<button
+id="saveAttendanceBtn"
+class="submit">
+
+💾 Save Attendance
+
+</button>
+
+</div>
+
+
+<div
+class="table-wrap"
+style="margin-top:15px">
+
+<table class="attendance-table">
+
+<thead>
+
+<tr>
+
+<th>#</th>
+<th>Maqaa</th>
+<th>Level</th>
+<th>Attendance</th>
+
+</tr>
+
+</thead>
+
+<tbody id="attendanceBody">
+
+<tr>
+
+<td colspan="4">
+Loading...
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- EVENTS MANAGEMENT -->
+
+<div
+class="card"
+style="margin-top:25px">
+
+<h3>
+📅 Manage Events
+</h3>
+
+<input
+id="newEvent"
+placeholder="Event name..."
+style="margin-top:12px"
+>
+
+<button
+id="addEventBtn"
+class="submit">
+
+➕ Add Event
+
+</button>
+
+<div
+id="adminEvents"
+style="margin-top:15px">
+</div>
+
+</div>
+
+
+<!-- ANNOUNCEMENT MANAGEMENT -->
+
+<div
+class="card"
+style="margin-top:20px">
+
+<h3>
+📢 Manage Announcements
+</h3>
+
+<input
+id="newAnnouncement"
+placeholder="Announcement..."
+style="margin-top:12px"
+>
+
+<button
+id="addAnnouncementBtn"
+class="submit">
+
+➕ Add Announcement
+
+</button>
+
+<div
+id="adminAnnouncements"
+style="margin-top:15px">
+</div>
+
+</div>
+
+
+<!-- COMMENTS MANAGEMENT -->
+
+<div
+class="card"
+style="margin-top:20px">
+
+<h3>
+💬 Manage Comments
+</h3>
+
+<div
+id="adminComments"
+style="margin-top:15px">
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+FOOTER
+===================================================== -->
+
+
+<footer>
+  <p>© 2026 Jem'aa Barattoota Waliigalaa Masjida Tawbaa</p>
+  <p>Tokkummaan humna keenya.</p>
+
+  <p class="developer">
+    Developed by <strong> namoonni website akkanaa hojjachisiifachuu barbaaddan lakkoofsa 0925792779 or ykedir106@gmail.com.com kanaan na qunnamaa  </strong>
+  </p>
+</footer>
+
+
+<script>
